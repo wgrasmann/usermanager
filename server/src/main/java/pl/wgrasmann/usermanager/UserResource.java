@@ -8,6 +8,7 @@ import pl.wgrasmann.usermanager.service.UserService;
 
 import java.util.List;
 
+@CrossOrigin(origins = "http://localhost:4200", maxAge = 3600)
 @RestController
 @RequestMapping("/user")
 public class UserResource {
