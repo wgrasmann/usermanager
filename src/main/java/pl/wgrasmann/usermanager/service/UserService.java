@@ -6,9 +6,11 @@ import pl.wgrasmann.usermanager.exception.UserNotFoundException;
 import pl.wgrasmann.usermanager.model.User;
 import pl.wgrasmann.usermanager.repo.UserRepo;
 
+import javax.transaction.Transactional;
 import java.util.List;
 
 @Service
+@Transactional
 public class UserService {
     private final UserRepo userRepo;
 
