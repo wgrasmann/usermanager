@@ -2,6 +2,7 @@ package pl.wgrasmann.usermanager.model;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.Date;
 
 @Entity
 public class User implements Serializable {
@@ -12,6 +13,7 @@ public class User implements Serializable {
     private String firstName;
     private String lastName;
     private String email;
+    private Date dateCreated;
 
     public Long getId() {
         return id;
@@ -45,6 +47,14 @@ public class User implements Serializable {
         this.email = email;
     }
 
+    public Date getDateCreated() {
+        return dateCreated;
+    }
+
+    public void setDateCreated(Date dateCreated) {
+        this.dateCreated = dateCreated;
+    }
+
     @Override
     public String toString() {
         return "User{" +
@@ -52,6 +62,7 @@ public class User implements Serializable {
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", email='" + email + '\'' +
+                ", dateCreated=" + dateCreated +
                 '}';
     }
 }

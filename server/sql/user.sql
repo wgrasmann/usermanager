@@ -8,6 +8,7 @@ CREATE TABLE IF NOT EXISTS public."user"
     first_name text,
     last_name text,
     email text,
+    date_created date,
     CONSTRAINT user_pkey PRIMARY KEY (id)
 )
 
