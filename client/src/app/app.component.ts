@@ -1,5 +1,6 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { NgForm } from '@angular/forms';
 import { User } from './user';
 import { UserService } from './user.service';
 
@@ -44,17 +45,19 @@ export class AppComponent implements OnInit {
     }
   }
 
-  // public onAddUser(addForm: NgForm): void {
-  //   this.userService.addUser(addForm.value).subscribe(
-  //     (response: User) => {
-  //       console.log(response);
-  //       this.getUsers();
-  //       addForm.reset();
-  //     },
-  //     (error: HttpErrorResponse) => {
-  //       alert(error.message);
-  //       addForm.reset();
-  //     }
-  //   );
-  // }
+  public onAddUser(addForm: NgForm): void {
+    document.getElementById('add-user-form')?.click();
+    this.userService.addUser(addForm.value).subscribe(
+      (response: User) => {
+        console.log(response);
+        this.getUsers();
+        addForm.reset();
+      },
+      (error: HttpErrorResponse) => {
+        alert(error.message);
+        addForm.reset();
+      }
+    );
+  }
+
 }
