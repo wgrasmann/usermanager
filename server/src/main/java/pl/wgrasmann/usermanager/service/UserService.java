@@ -7,7 +7,6 @@ import pl.wgrasmann.usermanager.model.User;
 import pl.wgrasmann.usermanager.repo.UserRepo;
 
 import javax.transaction.Transactional;
-import java.util.Date;
 import java.util.List;
 
 @Service
@@ -21,7 +20,6 @@ public class UserService {
     }
 
     public User addUser(User user) {
-        user.setDateCreated(new Date());
         return userRepo.save(user);
     }
 
