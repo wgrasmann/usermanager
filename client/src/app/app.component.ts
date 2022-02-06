@@ -1,6 +1,7 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { Mode } from './mode';
 import { User } from './user';
 import { UserService } from './user.service';
 
@@ -11,9 +12,14 @@ import { UserService } from './user.service';
 })
 export class AppComponent implements OnInit {
   title = 'User Manager App';
-  public users: User[] = [];
+  modeText: string;
+  users: User[] = [];
+  mode: Mode;
 
-  constructor(private userService: UserService) {}
+  constructor(private userService: UserService) {
+    this.mode = Mode.Add;
+    this.modeText = this.mode.toString();
+  }
 
   ngOnInit(): void {
     this.getUsers();
@@ -45,9 +51,43 @@ export class AppComponent implements OnInit {
     }
   }
 
-  public onAddUser(addForm: NgForm): void {
-    document.getElementById('add-user-form')?.click();
+  public onEditUser(addForm: NgForm, user: User) {
+    this.mode = Mode.Edit;
+    this.modeText = this.mode.toString();
+
+    addForm.setValue({
+      id: user.id,
+      firstName: user.firstName,
+      lastName: user.lastName,
+      email: user.email,
+      dateCreated: user.dateCreated
+    });
+  }
+
+  public onFormSubmit(addForm: NgForm): void {
+    if (this.mode == Mode.Add) {
+      this.addUser(addForm);
+    } else if (this.mode == Mode.Edit) {
+      this.editUser(addForm);
+    }
+  }
+
+  public addUser(addForm: NgForm): void {
     this.userService.addUser(addForm.value).subscribe(
+      (response: User) => {
+        console.log(response);
+        this.getUsers();
+        addForm.reset();
+      },
+      (error: HttpErrorResponse) => {
+        alert(error.message);
+        addForm.reset();
+      }
+    );
+  }
+
+  public editUser(addForm: NgForm): void {
+    this.userService.updateUser(addForm.value).subscribe(
       (response: User) => {
         console.log(response);
         this.getUsers();
