@@ -32,12 +32,7 @@ body{
   font-size: 0.875em;
   font-style: italic;
 }
-/* .user-list tbody td .user-link {
-  display: block;
-  font-size: 1.25em;
-  padding-top: 3px;
-  margin-left: 60px;
-} */
+
 a {
   color: #3498db;
   outline: none!important;
@@ -64,6 +59,11 @@ a:hover{
 text-decoration:none;
 }
 
+h1{
+  text-transform: uppercase;
+  text-align: center;
+}
+
 h4{
   text-transform: uppercase;
   text-align: center;
@@ -71,5 +71,15 @@ h4{
 }
 
 .container {
+  padding-top: 25px;
+  padding-bottom: 25px;
+}
+
+#form {
   padding-top: 15px;
+}
+
+#empty-text {
+  padding-left: 10px;
+  padding-top: 10px;
 }

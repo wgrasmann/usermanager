@@ -1,4 +1,6 @@
+import { HttpClientModule } from '@angular/common/http';
 import { TestBed } from '@angular/core/testing';
+import { FormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
 
 describe('AppComponent', () => {
@@ -7,6 +9,10 @@ describe('AppComponent', () => {
       declarations: [
         AppComponent
       ],
+      imports: [
+        HttpClientModule,
+        FormsModule
+      ]
     }).compileComponents();
   });
 
@@ -26,6 +32,6 @@ describe('AppComponent', () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('.container h4')?.textContent).toContain('User Manager App');
+    expect(compiled.querySelector('.container h1')?.textContent).toContain('User Manager App');
   });
 });

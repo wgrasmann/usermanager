@@ -29,7 +29,6 @@ export class AppComponent implements OnInit {
     this.userService.getUsers().subscribe(
       (response: User[]) => {
         this.users = response;
-        console.log(this.users);
       },
       (error: HttpErrorResponse) => {
         alert(error.message)
@@ -41,7 +40,6 @@ export class AppComponent implements OnInit {
     if(confirm("Are you sure to delete this user?")) {
       this.userService.deleteUser(userId).subscribe(
         (response: void) => {
-          console.log(response);
           this.getUsers();
         },
         (error: HttpErrorResponse) => {
@@ -75,7 +73,6 @@ export class AppComponent implements OnInit {
   public addUser(addForm: NgForm): void {
     this.userService.addUser(addForm.value).subscribe(
       (response: User) => {
-        console.log(response);
         this.getUsers();
         addForm.reset();
       },
@@ -89,15 +86,21 @@ export class AppComponent implements OnInit {
   public editUser(addForm: NgForm): void {
     this.userService.updateUser(addForm.value).subscribe(
       (response: User) => {
-        console.log(response);
         this.getUsers();
-        addForm.reset();
+        this.resetFormAndHeader(addForm);
       },
       (error: HttpErrorResponse) => {
         alert(error.message);
-        addForm.reset();
+        this.resetFormAndHeader(addForm);
       }
     );
+  }
+
+  private resetFormAndHeader(addForm: NgForm) {
+    this.mode = Mode.Add;
+    this.modeText = this.mode.toString();
+
+    addForm.reset();
   }
 
 }
